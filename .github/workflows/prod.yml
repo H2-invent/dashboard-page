@@ -52,7 +52,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: './Dockerfile'
+          context: '.'
           file: ${{ inputs.dockerfile_path }}
           push: true
           tags: |
