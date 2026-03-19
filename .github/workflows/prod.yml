@@ -7,6 +7,7 @@ on:
 
 jobs:
   version:
+    runs-on: ubuntu-latest
     name: Generate new Release Version
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -33,9 +34,10 @@ jobs:
           body: Building Docker Image ${{ steps.version.outputs.version }}
 
   docker_image:
+    runs-on: ubuntu-latest
+    name: Generate new Release Version
     needs:
       - version
-    name: Generate new Release Version
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
