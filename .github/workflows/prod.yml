@@ -1,0 +1,61 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  version:
+    name: Generate new Release Version
+    runs-on: [self-hosted, linux]
+    container: node:23-bullseye
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: paulhatch/semantic-version@v5.0.2
+        id: version
+        with:
+          tag_prefix: ""
+          major_pattern: "(MAJOR)"
+          minor_pattern: "(MINOR)"
+          change_path: .
+          version_format: "${major}.${minor}.${patch}"
+
+      - name: Create new Release with semantic-version tag
+        uses: ncipollo/release-action@v1
+        with:
+          name: Release ${{ steps.version.outputs.version }}
+          tag: ${{ steps.version.outputs.version }}
+          body: Building Docker Image ${{ steps.version.outputs.version }}
+
+  docker_image:
+    needs:
+      - version
+    name: Generate new Release Version
+    runs-on: [self-hosted, linux]
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Registry
+        uses: docker/login-action@v3
+        with:
+          registry: reg.h2-invent.com
+          username: ${{ secrets.HARBOR_PUSH_USERNAME }}
+          password: ${{ secrets.HARBOR_PUSH_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: './Dockerfile'
+          file: ${{ inputs.dockerfile_path }}
+          push: true
+      tags: |
+        reg.h2-invent.com/library/dashboard-page:${{ needs.version.outputs.version }}
+        reg.h2-invent.com/library/dashboard-page:latest
