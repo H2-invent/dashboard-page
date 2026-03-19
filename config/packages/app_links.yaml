@@ -1,0 +1,14 @@
+parameters:
+    app.landing_links:
+        - text: 'Symfony Dokumentation'
+          url: 'https://symfony.com/doc'
+          color: 'from-sky-500 to-cyan-500'
+          icon: 'book-open'
+        - text: 'Keycloak Admin Console'
+          url: 'http://localhost:8081/admin/'
+          color: 'from-violet-500 to-fuchsia-500'
+          icon: 'lock-closed'
+        - text: 'Projekt Repository'
+          url: 'https://github.com/'
+          color: 'from-emerald-500 to-teal-500'
+          icon: 'rocket-launch'
