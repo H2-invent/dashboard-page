@@ -15,4 +15,10 @@ class AuthController extends AbstractController
     {
         return $authenticator->start($request);
     }
+
+    #[Route('/logout', name: 'app_logout', methods: ['GET'])]
+    public function logout(): void
+    {
+        throw new \LogicException('Diese Route wird von der Symfony-Security-Logout-Bridge abgefangen.');
+    }
 }
