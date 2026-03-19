@@ -1,0 +1,22 @@
+security:
+    providers:
+        keycloak_user_provider:
+            id: App\Security\KeycloakUserProvider
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            lazy: true
+            provider: keycloak_user_provider
+            custom_authenticators:
+                - App\Security\KeycloakAuthenticator
+            entry_point: App\Security\KeycloakAuthenticator
+
+    access_control:
+        - { path: ^/auth/callback, roles: PUBLIC_ACCESS }
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/logout, roles: PUBLIC_ACCESS }
+        - { path: ^/, roles: ROLE_USER }

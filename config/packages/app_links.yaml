@@ -1,0 +1,22 @@
+parameters:
+    app.landing_header:
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain_url=https://example.org'
+        logo_alt: 'Organisationslogo'
+        logo_href: 'https://example.org'
+        badge: 'Geschützt via Keycloak SSO'
+        title: 'Willkommen auf deinem persönlichen Link-Hub.'
+        description: 'Alle Karten werden zentral aus einer Symfony-Konfigurationsdatei geladen. Farben, Link-Ziele, Bild-URLs und Beschriftungen kannst du ohne Template-Anpassung pflegen.'
+
+    app.landing_links:
+        - text: 'Symfony Dokumentation'
+          url: 'https://symfony.com/doc'
+          color: 'from-sky-500 to-cyan-500'
+          image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://symfony.com'
+        - text: 'Keycloak Admin Console'
+          url: 'http://localhost:8081/admin/'
+          color: 'from-violet-500 to-fuchsia-500'
+          image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://www.keycloak.org'
+        - text: 'Projekt Repository'
+          url: 'https://github.com/'
+          color: 'from-emerald-500 to-teal-500'
+          image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://github.com'
