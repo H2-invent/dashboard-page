@@ -5,7 +5,7 @@ Eine kleine Symfony-Anwendung, die nach erfolgreicher Keycloak-Anmeldung eine he
 ## Funktionsumfang
 
 - **Pflegbare Landingpage-Links** über `config/packages/app_links.yaml`
-- **Konfigurierbarer Header** für Badge, Titel und Beschreibung
+- **Konfigurierbarer Header** für Organisationslogo, Badge, Titel und Beschreibung
 - **Kleine Website-Logos pro Kachel** über eine Bild-URL in der Konfiguration
 - **Keycloak/OpenID-Connect Login** vor der Startseite
 - **Keycloak-Logout** inklusive Abmeldung aus der Keycloak-Session
@@ -33,11 +33,13 @@ Danach sind die Dienste erreichbar unter:
 
 ## Landingpage konfigurieren
 
-Die Texte im oberen Bereich und die Link-Karten werden in `config/packages/app_links.yaml` gepflegt:
+Die Texte im oberen Bereich, das Organisationslogo und die Link-Karten werden in `config/packages/app_links.yaml` gepflegt:
 
 ```yaml
 parameters:
     app.landing_header:
+        logo: 'https://www.google.com/s2/favicons?sz=128&domain_url=https://example.org'
+        logo_alt: 'Organisationslogo'
         badge: 'Geschützt via Keycloak SSO'
         title: 'Willkommen auf deinem persönlichen Link-Hub.'
         description: 'Alle Karten werden zentral aus einer Symfony-Konfigurationsdatei geladen.'
@@ -48,6 +50,18 @@ parameters:
           color: 'from-sky-500 to-cyan-500'
           image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://symfony.com'
 ```
+
+### Organisationslogo im Header
+
+Für das Logo deiner Organisation im oberen Bereich setzt du einfach in `app.landing_header.logo` eine Bild-URL oder einen lokalen Asset-Pfad.
+
+Beispiele:
+
+- Externe Bild-URL: `https://example.com/logo.png`
+- Lokale Datei: `/images/organisation-logo.svg`
+- Favicon-artiges Logo: `https://www.google.com/s2/favicons?sz=128&domain_url=https://example.org`
+
+Über `logo_alt` kannst du den Alternativtext anpassen.
 
 ### Bild-Logos pro Kachel
 
