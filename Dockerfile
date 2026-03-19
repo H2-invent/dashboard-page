@@ -8,6 +8,9 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
+COPY docker/start.sh /usr/local/bin/start-app
+RUN chmod +x /usr/local/bin/start-app
+
 EXPOSE 8000
 
-CMD ["sh", "-lc", "composer install && php bin/console cache:clear && php -S 0.0.0.0:8000 -t public"]
+CMD ["/usr/local/bin/start-app"]

@@ -15,6 +15,8 @@ Eine kleine Symfony-Anwendung, die nach erfolgreicher Keycloak-Anmeldung eine he
 docker compose up --build
 ```
 
+Der PHP-Container installiert beim ersten Start automatisch die Composer-Abhängigkeiten und leert anschließend den Symfony-Cache.
+
 Danach sind die Dienste erreichbar unter:
 
 - Landingpage: <http://localhost:8080>
