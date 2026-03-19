@@ -8,8 +8,6 @@ on:
 jobs:
   version:
     name: Generate new Release Version
-    runs-on: [self-hosted, linux]
-    container: node:23-bullseye
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
@@ -38,7 +36,6 @@ jobs:
     needs:
       - version
     name: Generate new Release Version
-    runs-on: [self-hosted, linux]
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
