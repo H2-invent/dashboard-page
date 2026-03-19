@@ -2,6 +2,7 @@ parameters:
     app.landing_header:
         logo: 'https://www.google.com/s2/favicons?sz=128&domain_url=https://example.org'
         logo_alt: 'Organisationslogo'
+        logo_href: 'https://example.org'
         badge: 'Geschützt via Keycloak SSO'
         title: 'Willkommen auf deinem persönlichen Link-Hub.'
         description: 'Alle Karten werden zentral aus einer Symfony-Konfigurationsdatei geladen. Farben, Link-Ziele, Bild-URLs und Beschriftungen kannst du ohne Template-Anpassung pflegen.'
