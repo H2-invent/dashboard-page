@@ -6,6 +6,7 @@ Eine kleine Symfony-Anwendung, die nach erfolgreicher Keycloak-Anmeldung eine he
 
 - **Pflegbare Landingpage-Links** über `config/packages/app_links.yaml`
 - **Konfigurierbarer Header** für Badge, Titel und Beschreibung
+- **Kleine Website-Logos pro Kachel** über eine Bild-URL in der Konfiguration
 - **Keycloak/OpenID-Connect Login** vor der Startseite
 - **Keycloak-Logout** inklusive Abmeldung aus der Keycloak-Session
 - **Twig + TailwindCSS** für ein modernes, freundliches UI
@@ -45,35 +46,20 @@ parameters:
         - text: 'Symfony Dokumentation'
           url: 'https://symfony.com/doc'
           color: 'from-sky-500 to-cyan-500'
-          icon: 'book-open'
+          image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://symfony.com'
 ```
 
-## Verfügbare Icons
+### Bild-Logos pro Kachel
 
-Du kannst aktuell diese 20 Icons in `icon:` verwenden:
+Jede Kachel kann mit einem kleinen Website-Logo versehen werden. Dafür gibst du einfach eine Bild-URL in `image:` an.
 
-- `book-open`
-- `briefcase`
-- `calendar`
-- `chart-bar`
-- `check-circle`
-- `cloud`
-- `cog`
-- `document-text`
-- `envelope`
-- `folder`
-- `globe`
-- `heart`
-- `home`
-- `light-bulb`
-- `link`
-- `lock-closed`
-- `magnifying-glass`
-- `rocket-launch`
-- `server`
-- `shield-check`
+Beispiele:
 
-Unbekannte Namen fallen automatisch auf ein Plus-Icon zurück.
+- Favicon über Google S2: `https://www.google.com/s2/favicons?sz=64&domain_url=https://example.com`
+- Eigenes Logo: `https://example.com/logo.png`
+- Lokale Datei im Projekt: `/images/logo.svg`
+
+Falls du aus Kompatibilitätsgründen noch `icon:` statt `image:` verwendest, wird der bisherige Icon-Fallback weiterhin unterstützt.
 
 ## Wichtige Umgebungsvariablen
 

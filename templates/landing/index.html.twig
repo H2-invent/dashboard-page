@@ -47,8 +47,17 @@
                         <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r {{ link.color }}"></div>
                         <div class="flex h-full flex-col justify-between gap-10">
                             <div class="space-y-4">
-                                <div class="inline-flex rounded-2xl bg-slate-100 p-3 text-slate-700 transition group-hover:bg-slate-900 group-hover:text-white">
-                                    {{ app_icon(link.icon)|raw }}
+                                <div class="inline-flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-slate-100 p-2 ring-1 ring-slate-200 transition group-hover:bg-white">
+                                    {% if link.image is defined and link.image %}
+                                        <img
+                                            src="{{ link.image }}"
+                                            alt="{{ link.text }} Logo"
+                                            class="h-full w-full rounded-xl object-contain"
+                                            loading="lazy"
+                                        >
+                                    {% elseif link.icon is defined and link.icon %}
+                                        {{ app_icon(link.icon)|raw }}
+                                    {% endif %}
                                 </div>
                                 <div class="space-y-2">
                                     <h2 class="text-xl font-semibold text-slate-950">{{ link.text }}</h2>
