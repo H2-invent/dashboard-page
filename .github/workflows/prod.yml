@@ -56,6 +56,6 @@ jobs:
           context: './Dockerfile'
           file: ${{ inputs.dockerfile_path }}
           push: true
-      tags: |
-        reg.h2-invent.com/library/dashboard-page:${{ needs.version.outputs.version }}
-        reg.h2-invent.com/library/dashboard-page:latest
+          tags: |
+            reg.h2-invent.com/library/dashboard-page:${{ needs.version.outputs.version }}
+            reg.h2-invent.com/library/dashboard-page:latest
