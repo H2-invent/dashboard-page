@@ -21,6 +21,7 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 class KeycloakAuthenticator extends AbstractAuthenticator implements AuthenticationEntryPointInterface
 {
     private const SESSION_STATE_KEY = 'keycloak_oauth_state';
+    public const SESSION_ID_TOKEN_KEY = 'keycloak_id_token';
 
     public function __construct(
         private readonly HttpClientInterface $httpClient,
@@ -55,6 +56,11 @@ class KeycloakAuthenticator extends AbstractAuthenticator implements Authenticat
 
         $session->remove(self::SESSION_STATE_KEY);
         $tokenPayload = $this->exchangeCodeForTokenPayload($code);
+
+        if (isset($tokenPayload['id_token']) && \is_string($tokenPayload['id_token']) && '' !== $tokenPayload['id_token']) {
+            $session->set(self::SESSION_ID_TOKEN_KEY, $tokenPayload['id_token']);
+        }
+
         $profile = $this->fetchUserProfile($tokenPayload);
 
         $identifier = $profile['preferred_username'] ?? $profile['email'] ?? $profile['sub'] ?? null;

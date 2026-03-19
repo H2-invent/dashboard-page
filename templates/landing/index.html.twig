@@ -9,18 +9,17 @@
             <header class="mb-12 flex flex-col gap-6 rounded-[2rem] border border-white/70 bg-white/80 p-8 shadow-soft backdrop-blur xl:flex-row xl:items-center xl:justify-between">
                 <div class="max-w-2xl space-y-4">
                     <span class="inline-flex items-center rounded-full bg-cyan-100 px-3 py-1 text-sm font-medium text-cyan-800">
-                        Geschützt via Keycloak SSO
+                        {{ header.badge }}
                     </span>
                     <div class="space-y-3">
                         <p class="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-700">
                             {{ personalGreeting }}
                         </p>
                         <h1 class="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-                            Willkommen auf deinem persönlichen Link-Hub.
+                            {{ header.title }}
                         </h1>
                         <p class="text-lg leading-8 text-slate-600">
-                            Alle Karten werden zentral aus einer Symfony-Konfigurationsdatei geladen. Farben, Link-Ziele,
-                            Icon-Namen und Beschriftungen kannst du ohne Template-Anpassung pflegen.
+                            {{ header.description }}
                         </p>
                     </div>
                 </div>

@@ -14,9 +14,6 @@ security:
             custom_authenticators:
                 - App\Security\KeycloakAuthenticator
             entry_point: App\Security\KeycloakAuthenticator
-            logout:
-                path: app_logout
-                target: /
 
     access_control:
         - { path: ^/auth/callback, roles: PUBLIC_ACCESS }

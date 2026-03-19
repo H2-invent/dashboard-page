@@ -14,6 +14,8 @@ class LandingController extends AbstractController
     public function __construct(
         #[Autowire('%app.landing_links%')]
         private readonly array $landingLinks,
+        #[Autowire('%app.landing_header%')]
+        private readonly array $landingHeader,
     ) {
     }
 
@@ -23,6 +25,7 @@ class LandingController extends AbstractController
         $user = $this->getUser();
 
         return $this->render('landing/index.html.twig', [
+            'header' => $this->landingHeader,
             'links' => $this->landingLinks,
             'user' => $user,
             'personalGreeting' => $this->buildPersonalGreeting($user),
