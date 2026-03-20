@@ -1,16 +1,21 @@
-FROM php:8.3-cli-alpine
+FROM serversideup/php:8.4-fpm-apache
 
-RUN apk add --no-cache bash curl icu-dev libzip-dev unzip git \
-    && docker-php-ext-install intl \
-    && rm -rf /var/cache/apk/*
+USER root
 
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+RUN install-php-extensions intl
 
-WORKDIR /app
+COPY --chmod=755 docker/entrypoint.d/ /etc/entrypoint.d/
 
-COPY docker/start.sh /usr/local/bin/start-app
-RUN chmod +x /usr/local/bin/start-app
+WORKDIR /var/www/html
 
-EXPOSE 8000
+COPY --chown=www-data:www-data . .
 
-CMD ["/usr/local/bin/start-app"]
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader \
+    && chown -R www-data:www-data /var/www/html
+
+
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+
+USER www-data
+
+EXPOSE 8080

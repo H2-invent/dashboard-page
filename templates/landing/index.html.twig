@@ -23,14 +23,11 @@
                                 >
                             </span>
                             <span class="space-y-1">
-                                <span class="block text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">Organisation</span>
                                 <span class="block text-sm font-semibold text-slate-900 group-hover:text-cyan-700">{{ header.logo_alt|default('Zum Organisationsportal') }}</span>
                             </span>
                         </a>
                     {% endif %}
-                    <span class="inline-flex items-center rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-sm font-medium text-cyan-800">
-                        {{ header.badge }}
-                    </span>
+
                     <div class="space-y-3">
                         <p class="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-700">
                             {{ personalGreeting }}
