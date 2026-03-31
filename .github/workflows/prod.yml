@@ -55,5 +55,5 @@ jobs:
           context: '.'
           push: true
           tags: |
-            reg.h2-invent.com/library/dashboard-page:${{ needs.version.outputs.version }}
-            reg.h2-invent.com/library/dashboard-page:latest
+            reg.h2-invent.com/dashboard-page/symfony:${{ needs.version.outputs.version }}
+            reg.h2-invent.com/dashboard-page/symfony:latest
