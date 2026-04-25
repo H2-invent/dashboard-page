@@ -5,18 +5,54 @@ parameters:
         logo_href: 'https://h2-invent.com'
         badge: 'Login über Keycloak SSO'
         title: 'Willkommen auf deinem persönlichen Link-Hub.'
-        description: 'Alle Karten werden zentral aus einer Symfony-Konfigurationsdatei geladen. Farben, Link-Ziele, Bild-URLs und Beschriftungen kannst du ohne Template-Anpassung pflegen.'
+        description: 'Alle Karten werden zentral aus einer Symfony-Konfigurationsdatei geladen.'
 
+    # Geordnete Liste von Gruppen.
+    # Die erste Gruppe, deren email_pattern auf die E-Mail des Benutzers passt, wird verwendet.
+    # Spezifische Muster vor dem Catch-All platzieren.
     app.landing_links:
-        - text: 'Symfony Dokumentation'
-          url: 'https://symfony.com/doc'
-          color: 'from-sky-500 to-cyan-500'
-          image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://symfony.com'
-        - text: 'Keycloak Admin Console'
-          url: 'http://localhost:8081/admin/'
-          color: 'from-violet-500 to-fuchsia-500'
-          image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://www.keycloak.org'
-        - text: 'Projekt Repository'
-          url: 'https://github.com/'
-          color: 'from-emerald-500 to-teal-500'
-          image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://github.com'
+
+        - email_pattern: '/@company-a\.com$/i'
+          links:
+              - text: 'Kunde A – Intranet'
+                url: 'https://intranet.company-a.com'
+                color: 'from-sky-500 to-cyan-500'
+                image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://company-a.com'
+              - text: 'Kunde A – Helpdesk'
+                url: 'https://helpdesk.company-a.com'
+                color: 'from-violet-500 to-fuchsia-500'
+                image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://company-a.com'
+
+        - email_pattern: '/@company-b\.(com|de)$/i'
+          links:
+              - text: 'Kunde B – Portal'
+                url: 'https://portal.company-b.com'
+                color: 'from-emerald-500 to-teal-500'
+                image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://company-b.com'
+              - text: 'Kunde B – Wiki'
+                url: 'https://wiki.company-b.com'
+                color: 'from-amber-500 to-orange-500'
+                image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://company-b.com'
+
+        - email_pattern: '/^(admin|ops)@/i'
+          links:
+              - text: 'Keycloak Admin Console'
+                url: 'http://localhost:8081/admin/'
+                color: 'from-red-500 to-rose-500'
+                image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://www.keycloak.org'
+              - text: 'Symfony Profiler'
+                url: '/_profiler'
+                color: 'from-slate-500 to-gray-500'
+                image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://symfony.com'
+
+        # Catch-All – trifft auf alle übrigen Benutzer zu
+        - email_pattern: '/.+/'
+          links:
+              - text: 'Symfony Dokumentation'
+                url: 'https://symfony.com/doc'
+                color: 'from-sky-500 to-cyan-500'
+                image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://symfony.com'
+              - text: 'Projekt Repository'
+                url: 'https://github.com/'
+                color: 'from-emerald-500 to-teal-500'
+                image: 'https://www.google.com/s2/favicons?sz=64&domain_url=https://github.com'

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Security\KeycloakUser;
+use App\Service\LinkResolverService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,8 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class LandingController extends AbstractController
 {
     public function __construct(
-        #[Autowire('%app.landing_links%')]
-        private readonly array $landingLinks,
+        private readonly LinkResolverService $linkResolver,
         #[Autowire('%app.landing_header%')]
         private readonly array $landingHeader,
     ) {
@@ -26,7 +26,7 @@ class LandingController extends AbstractController
 
         return $this->render('landing/index.html.twig', [
             'header' => $this->landingHeader,
-            'links' => $this->landingLinks,
+            'links' => $this->linkResolver->resolveForUser($user),
             'user' => $user,
             'personalGreeting' => $this->buildPersonalGreeting($user),
         ]);

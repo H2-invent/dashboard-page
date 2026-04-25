@@ -18,3 +18,7 @@ services:
             $clientId: '%env(KEYCLOAK_CLIENT_ID)%'
             $clientSecret: '%env(KEYCLOAK_CLIENT_SECRET)%'
             $redirectUri: '%env(KEYCLOAK_REDIRECT_URI)%'
+
+    App\Service\LinkResolverService:
+        arguments:
+            $linkGroups: '%app.landing_links%'
