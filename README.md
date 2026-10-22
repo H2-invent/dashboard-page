@@ -1,5 +1,7 @@
 # Bühl Landingpage
 
+Mit Updated PHP base Image
+
 Eine kleine Symfony-Anwendung, die nach erfolgreicher Keycloak-Anmeldung eine helle, moderne Landingpage mit konfigurierbaren Link-Karten anzeigt.
 
 ## Funktionsumfang
